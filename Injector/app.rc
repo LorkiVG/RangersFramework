@@ -1,0 +1,35 @@
+#include "winver.h"
+IDI_ICON1               ICON    DISCARDABLE     "icon.ico"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,1,0
+ PRODUCTVERSION 0,0,1,0
+ FILEFLAGSMASK 0x3fL
+ #ifdef _DEBUG
+ FILEFLAGS 0x1L
+ #else
+ FILEFLAGS 0x0L
+ #endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4"
+        BEGIN
+            VALUE "CompanyName", "Vertix Games"
+            VALUE "FileDescription", "Framework for Rangers.exe\0"
+            VALUE "FileVersion", "0.0.1.0\0"
+            VALUE "InternalName", "YourInternalName\0"
+            VALUE "LegalCopyright", "Copyright (C) Vertix Games\0"
+            VALUE "OriginalFilename", "RangersVG.exe\0"
+            VALUE "ProductName", "RangersFramework\0"
+            VALUE "ProductVersion", "0.0.1.0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
