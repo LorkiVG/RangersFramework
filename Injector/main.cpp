@@ -172,7 +172,7 @@ int main()
 		return -1;
 	}
 
-
+	Sleep(1000);
 	ctx.ContextFlags = CONTEXT_FULL;
 
 	// Opening VGFramework.dll
@@ -336,7 +336,7 @@ int main()
 
 
 	//Suspending after SFT_Init
-	Sleep(1000);
+	
 	logFile << "Suspending target thread" << std::endl;
 	SuspendThread(hThread);
 	GetThreadContext(hThread, &ctx);
