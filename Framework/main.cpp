@@ -1,9 +1,13 @@
-#pragma once
+#include <RmlUi/Core.h>
+#include <RmlUi/Debugger.h>
+#include <RmlUi_Backend.h>
 #include "TGalaxy.h"
 #include "Path.h"
 #include "Logger.h"
 #include <string>
 #include <vector>
+
+
 using namespace std;
 
 typedef void (__fastcall *TGalaxyNextDayType)(TGalaxy* galaxy);
@@ -29,6 +33,11 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             Path::InitLogPath(); 
 
             Logger::WriteChar("VGFramework has been successfully added to the game");
+            Logger::WriteChar("Init Render Process");
+
+            // Rml::Context* context = Rml::CreateContext("default", Rml::Vector2i(1028, 720));
+
+            // bool success = Rml::LoadFontFace("assets/my_font_face.ttf");
 
             targetAddr = 0x00787E50;
 

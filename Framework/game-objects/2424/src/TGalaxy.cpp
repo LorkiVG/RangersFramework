@@ -10,7 +10,8 @@ void MyTGalaxyNextDay(TGalaxy* galaxy)
     Logger::WriteChar(tstr.c_str());
 }
 
-namespace TGalaxyM {
+namespace TGalaxyM 
+{
     int GetGalaxySeed()
     {
         return Galaxy->gen_seed;
