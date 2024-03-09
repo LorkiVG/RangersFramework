@@ -33,9 +33,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             Path::InitLogPath(); 
 
             Logger::WriteChar("VGFramework has been successfully added to the game");
-            Logger::WriteChar("Init Render Process");
-
-            // Rml::Context* context = Rml::CreateContext("default", Rml::Vector2i(1028, 720));
+            
 
             // bool success = Rml::LoadFontFace("assets/my_font_face.ttf");
 
@@ -68,9 +66,36 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             //Change memory protect to readonly
             VirtualProtect((LPVOID)targetAddr, 5, oldProtect, &oldProtect);
 
-            return 0;
+            Logger::WriteChar("Find main window");
             hParentWindow = FindWindowA("Rangers MainClassName", "Rangers");
             
+            Logger::WriteChar("Init UI Process");
+            
+            if (!Backend::Initialize(hParentWindow))
+            {
+                Backend::Shutdown();
+                return -1;
+            }
+
+            // Install the custom interfaces constructed by the backend before initializing RmlUi.
+            Rml::SetSystemInterface(Backend::GetSystemInterface());
+            Rml::SetRenderInterface(Backend::GetRenderInterface());
+
+            // RmlUi initialisation.
+            Rml::Initialise();
+
+            Logger::WriteChar("Init RmlUIContext");
+            Rml::Context* context = Rml::CreateContext("default", Rml::Vector2i(1028, 720));
+
+            RECT rect;
+            if(GetWindowRect(hParentWindow, &rect))
+            {
+                int width = rect.right - rect.left;
+                int height = rect.bottom - rect.top;
+            }
+
+            return 0;
+
             break;
         case DLL_THREAD_ATTACH:
         case DLL_THREAD_DETACH:

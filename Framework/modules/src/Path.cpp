@@ -8,6 +8,9 @@ namespace Path
     wstring utilitiesdir = L"";
     char* utilitiesdir_char = "";
 
+    wstring modsdir = L"";
+    char* modsdir_char = "";
+
     wstring documents_folder = L"";
     char* documents_folder_char = "";
 
@@ -21,6 +24,11 @@ namespace Path
         utilitiesdir = utilities_dir_path;
 
         GetModuleFileNameA(hModule, utilitiesdir_char, MAX_PATH);
+    }
+    void InitModsPath()
+    {
+        modsdir = utilitiesdir + L"/Mods";
+        modsdir_char = strcat(utilitiesdir_char, "/Mods");
     }
     void InitUserDocumentsPath() 
     {

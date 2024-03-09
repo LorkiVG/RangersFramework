@@ -10,6 +10,9 @@ namespace Path
     extern wstring utilitiesdir;
     extern char* utilitiesdir_char;
 
+    extern wstring modsdir;
+    extern char* modsdir_char;
+
     extern wstring documents_folder;
     extern char* documents_folder_char;
 
