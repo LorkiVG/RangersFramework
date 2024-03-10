@@ -5,42 +5,45 @@
 
 namespace Path 
 {
-    wstring utilitiesdir = L"";
-    char* utilitiesdir_char = "";
+    wstring utilitiesPath = L"";
+    char* utilitiesPath_char = "";
 
-    wstring modsdir = L"";
-    char* modsdir_char = "";
+    wstring modsPath = L"";
+    char* modsPath_char = "";
 
-    wstring documents_folder = L"";
-    char* documents_folder_char = "";
+    wstring documentsPath = L"";
+    char* documentsPath_char = "";
 
-    wstring log_path = L"";
-    char* log_path_char = "";
+    wstring logPath = L"";
+    char* logPath_char = "";
 
     void InitUtilitiesPath(HMODULE hModule)
     {
-        WCHAR utilities_dir_path[MAX_PATH];
-        GetModuleFileNameW(hModule, utilities_dir_path, MAX_PATH);
-        utilitiesdir = utilities_dir_path;
+        WCHAR utilitiesPath_temp[MAX_PATH];
+        GetModuleFileNameW(hModule, utilitiesPath_temp, MAX_PATH);
+        utilitiesPath = utilitiesPath_temp;
 
-        GetModuleFileNameA(hModule, utilitiesdir_char, MAX_PATH);
+        GetModuleFileNameA(hModule, utilitiesPath_char, MAX_PATH);
     }
+
     void InitModsPath()
     {
-        modsdir = utilitiesdir + L"/Mods";
-        modsdir_char = strcat(utilitiesdir_char, "/Mods");
+        modsPath = utilitiesPath + L"/Mods";
+        modsPath_char = strcat(utilitiesPath_char, "/Mods");
     }
-    void InitUserDocumentsPath() 
+
+    void InitDocumentsPath() 
     {
-        WCHAR user_documents_path[MAX_PATH];
-        SHGetSpecialFolderPathW(0, user_documents_path, CSIDL_PERSONAL, true);
-        documents_folder = user_documents_path;
+        WCHAR documentsPath_temp[MAX_PATH];
+        SHGetSpecialFolderPathW(0, documentsPath_temp, CSIDL_PERSONAL, true);
+        documentsPath = documentsPath_temp;
          
-        SHGetSpecialFolderPathA(0, documents_folder_char, CSIDL_PERSONAL, true);
+        SHGetSpecialFolderPathA(0, documentsPath_char, CSIDL_PERSONAL, true);
     }
+
     void InitLogPath() 
     {
-        log_path = documents_folder + L"/SpaceRangersHD/########.log";
-        log_path_char = strcat(documents_folder_char, "/SpaceRangersHD/########.log");
+        logPath = documentsPath + L"/SpaceRangersHD/########.log";
+        logPath_char = strcat(documentsPath_char, "/SpaceRangersHD/########.log");
     }
 }

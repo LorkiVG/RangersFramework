@@ -45,7 +45,7 @@ using KeyDownCallback = bool (*)(Rml::Context* context, Rml::Input::KeyIdentifie
     starting point and copy relevant parts into the main loop of your application. On the other hand, the underlying platform and renderer used by the
     backend are intended to be re-usable as is.
  */
-namespace Backend {
+namespace RmlBackend {
 
 // Initializes the backend, including the custom system and render interfaces, and opens a window for rendering the RmlUi context.
 bool Initialize(HWND window_handle);

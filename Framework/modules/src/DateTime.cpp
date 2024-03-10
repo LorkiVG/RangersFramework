@@ -6,7 +6,8 @@ using std::chrono::milliseconds;
 using std::chrono::seconds;
 using std::chrono::system_clock;
 
-namespace DateTime {
+namespace DateTime 
+{
     int GetNowYear()
     {
         time_t t = std::time(nullptr);

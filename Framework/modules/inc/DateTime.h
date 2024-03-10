@@ -2,7 +2,8 @@
 #include <chrono>
 #include <string>
 
-namespace DateTime {
+namespace DateTime 
+{
     int GetNowYear();
     int GetNowMonth();
     int GetNowDays();

@@ -172,7 +172,7 @@ int main()
 		return -1;
 	}
 
-	Sleep(1000);
+	Sleep(10000);
 	ctx.ContextFlags = CONTEXT_FULL;
 
 	// Opening VGFramework.dll

@@ -7,19 +7,20 @@ using namespace std;
 
 namespace Path 
 {
-    extern wstring utilitiesdir;
-    extern char* utilitiesdir_char;
+    extern wstring utilitiesPath;
+    extern char* utilitiesPath_char;
 
-    extern wstring modsdir;
-    extern char* modsdir_char;
+    extern wstring modsPath;
+    extern char* modsPath_char;
 
-    extern wstring documents_folder;
-    extern char* documents_folder_char;
+    extern wstring documentsPath;
+    extern char* documentsPath_char;
 
-    extern wstring log_path;
-    extern char* log_path_char;
-    
+    extern wstring logPath;
+    extern char* logPath_char;
+
     void InitUtilitiesPath(HMODULE hModule);
-    void InitUserDocumentsPath ();
-    void InitLogPath ();
+    void InitModsPath();
+    void InitDocumentsPath();
+    void InitLogPath();
 }

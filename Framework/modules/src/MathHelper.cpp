@@ -9,12 +9,13 @@ namespace MathM {
     {
         return a >> b;
     }
-    const int isPrime(uint32_t num) {
+    const int isPrime(uint32_t num) 
+    {
         if (num == 2) return true;
-        //Проверка числа на чётность побитовым И
         if (!(num & 1)) return false;
         double sqrt_num = sqrt(double(num));
-        for (int div = 3; div <= sqrt_num; div += 2) {
+        for (int div = 3; div <= sqrt_num; div += 2) 
+        {
             if (num % div == 0) return false;
         }
         return true;
@@ -50,16 +51,5 @@ namespace MathM {
             return (double(nearbyint(value * 0.5f) * 2.0f)); //   
         }
         return (double(int(value + fShift)));
-    }
-};
-
-namespace DoubleM{
-    const unsigned int DoubleMultiplyInt(double a, int b)
-    {
-        return a * b;
-    }
-    const unsigned int DoubleSplitInt(double a, int b)
-    {
-        return a / b;
     }
 };

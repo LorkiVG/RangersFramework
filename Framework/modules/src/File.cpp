@@ -4,16 +4,21 @@
 
 using namespace std;
 
-namespace File {
-    void Rename(wchar_t* oldfilename,wchar_t* newfilename) {
+namespace File 
+{
+    void Rename(wchar_t* oldfilename,wchar_t* newfilename) 
+    {
         _wrename(oldfilename, newfilename);           
     }
-    inline bool FileExists(const wstring& name) {
-        if (FILE* file = _wfopen(name.c_str(), L"r")) {
+    inline bool FileExists(const wstring& name) 
+    {
+        if (FILE* file = _wfopen(name.c_str(), L"r")) 
+        {
             fclose(file);
             return true;
         }
-        else {
+        else 
+        {
             return false;
         }
     }
@@ -23,7 +28,7 @@ namespace File {
     )
     {
         wstring cur_line;
-        wstring path = Path::documents_folder;
+        wstring path = Path::documentsPath;
         path += L"\\" + *txt_path; 
         wifstream file(path, ios::in);  
         if (file)
@@ -47,12 +52,12 @@ namespace File {
     }
 
     wstring GetParFromFile(
-            wstring txt_path,
-            wstring param_name
-        )
+        wstring txt_path,
+        wstring param_name
+    )
     {
         wstring cur_line;
-        wstring path = Path::documents_folder + txt_path;
+        wstring path = Path::documentsPath + txt_path;
 
         wifstream file(path, ios::in);
 
@@ -88,7 +93,7 @@ namespace File {
     {
         wstring cur_line;
         wstring add_line;
-        wstring path = Path::documents_folder;
+        wstring path = Path::documentsPath;
         path += L"\\" + *txt_path;
 
         wifstream file(path, ios::in);

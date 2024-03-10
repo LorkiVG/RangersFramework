@@ -5,7 +5,8 @@
 
 using namespace std;
 
-namespace Strings {
+namespace Strings 
+{
     wchar_t *ltrim(wchar_t *s);
     wchar_t *rtrim(wchar_t *s);
     __forceinline wchar_t* trim(wchar_t* s);

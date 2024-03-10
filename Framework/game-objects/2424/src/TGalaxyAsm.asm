@@ -1,5 +1,5 @@
 .586
-.model	flat
+.model flat
 .code
 
 MyTGalaxyNextDay PROTO C

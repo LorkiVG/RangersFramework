@@ -35,7 +35,7 @@
 #include <RmlUi/Core/Core.h>
 #include <RmlUi/Core/Input.h>
 #include <RmlUi/Core/Profiling.h>
-
+#include "Logger.h"
 /**
     High DPI support using Windows Per Monitor V2 DPI awareness.
 
@@ -125,7 +125,7 @@ struct BackendData {
 };
 static Rml::UniquePtr<BackendData> data;
 
-bool Backend::Initialize(const char* window_name, int width, int height, bool allow_resize)
+bool RmlBackend::Initialize(const char* window_name, int width, int height, bool allow_resize)
 {
 	RMLUI_ASSERT(!data);
 
@@ -167,25 +167,31 @@ bool Backend::Initialize(const char* window_name, int width, int height, bool al
 	return true;
 }
 
-bool Backend::Initialize(HWND window_handle)
+bool RmlBackend::Initialize(HWND window_handle)
 {
 	RMLUI_ASSERT(!data);
 
+	data = Rml::MakeUnique<BackendData>();
+	data->instance_handle = GetModuleHandle(nullptr);
+	data->instance_name = L"Rangers";
+
+	Logger::WriteMessage(L"Backend 0");
 	RECT rect;
 	if(GetWindowRect(window_handle, &rect))
 	{
-		int width = rect.right - rect.left;
-		int height = rect.bottom - rect.top;
-
+		int width = 444;
+		int height = 444;
+		Logger::WriteMessage(L"Backend 1");
 		// Initialize the window but don't show it yet.
 		if (!window_handle)
 			return false;
-
+		Logger::WriteMessage(L"Backend 2");
 		data->window_handle = window_handle;
-
+		Logger::WriteMessage(L"Backend 3");
 		Rml::Vector<const char*> extensions;
 		extensions.push_back(VK_KHR_WIN32_SURFACE_EXTENSION_NAME);
 		extensions.push_back(VK_KHR_SURFACE_EXTENSION_NAME);
+		Logger::WriteMessage(L"Backend 4");
 		if (!data->render_interface.Initialize(std::move(extensions), CreateVulkanSurface))
 		{
 			DisplayError(window_handle, "Could not initialize Vulkan render interface.");
@@ -193,13 +199,16 @@ bool Backend::Initialize(HWND window_handle)
 			data.reset();
 			return false;
 		}
-
+		Logger::WriteMessage(L"Backend 5");
 		data->system_interface.SetWindow(window_handle);
 		data->render_interface.SetViewport(width, height);
 
+		Logger::WriteMessage(L"Backend 6");
 		// Now we are ready to show the window.
 		::ShowWindow(window_handle, SW_SHOW);
+		Logger::WriteMessage(L"Backend 7");
 		::SetForegroundWindow(window_handle);
+		Logger::WriteMessage(L"Backend 8");
 		::SetFocus(window_handle);
 
 		return true;
@@ -210,7 +219,7 @@ bool Backend::Initialize(HWND window_handle)
 	}
 }
 
-void Backend::Shutdown()
+void RmlBackend::Shutdown()
 {
 	RMLUI_ASSERT(data);
 
@@ -222,13 +231,13 @@ void Backend::Shutdown()
 	data.reset();
 }
 
-Rml::SystemInterface* Backend::GetSystemInterface()
+Rml::SystemInterface* RmlBackend::GetSystemInterface()
 {
 	RMLUI_ASSERT(data);
 	return &data->system_interface;
 }
 
-Rml::RenderInterface* Backend::GetRenderInterface()
+Rml::RenderInterface* RmlBackend::GetRenderInterface()
 {
 	RMLUI_ASSERT(data);
 	return &data->render_interface;
@@ -247,7 +256,7 @@ static bool NextEvent(MSG& message, UINT timeout)
 	return PeekMessage(&message, nullptr, 0, 0, PM_REMOVE);
 }
 
-bool Backend::ProcessEvents(Rml::Context* context, KeyDownCallback key_down_callback, bool power_save)
+bool RmlBackend::ProcessEvents(Rml::Context* context, KeyDownCallback key_down_callback, bool power_save)
 {
 	RMLUI_ASSERT(data && context);
 
@@ -290,19 +299,19 @@ bool Backend::ProcessEvents(Rml::Context* context, KeyDownCallback key_down_call
 	return data->running;
 }
 
-void Backend::RequestExit()
+void RmlBackend::RequestExit()
 {
 	RMLUI_ASSERT(data);
 	data->running = false;
 }
 
-void Backend::BeginFrame()
+void RmlBackend::BeginFrame()
 {
 	RMLUI_ASSERT(data);
 	data->render_interface.BeginFrame();
 }
 
-void Backend::PresentFrame()
+void RmlBackend::PresentFrame()
 {
 	RMLUI_ASSERT(data);
 	data->render_interface.EndFrame();

@@ -14,16 +14,24 @@ namespace Strings
         *(back+1) = '\0';
         return s;
     }
-    __forceinline wchar_t* trim(wchar_t* s) {rtrim(ltrim(s));}
+    __forceinline wchar_t* trim(wchar_t* s) 
+    {
+        rtrim(ltrim(s));
+    }
 
-    wstring ltrimwstr(const wstring &s) {
+    wstring ltrimwstr(const wstring &s) 
+    {
         return regex_replace(s, wregex(L"^\\s+"), wstring(L""));
     }
 
-    wstring rtrimwstr(const wstring &s) {
+    wstring rtrimwstr(const wstring &s) 
+    {
         return regex_replace(s, wregex(L"\\s+$"), wstring(L""));
     }
-    __forceinline wstring trimwstr(wstring s) {rtrimwstr(ltrimwstr(s));}
+    __forceinline wstring trimwstr(wstring s) 
+    {
+        rtrimwstr(ltrimwstr(s));
+    }
 
 
     wchar_t* SubString(const wchar_t* str, uint32_t start, uint32_t end)
@@ -41,6 +49,7 @@ namespace Strings
         *outStr = '\0';
         return outStr - outStrLen;
     }
+
     __forceinline wstring SubString(wstring str, uint32_t m, uint32_t n)
     {
         return str.substr(m,n);
@@ -78,7 +87,8 @@ namespace Strings
         uint32_t a = 0;
         uint32_t n = 0;
         uint32_t len = wcslen(str);
-        while(n != len) {
+        while(n != len) 
+        {
             if (str[n] == symbol[0]) a++;
             n++;
         }
@@ -90,7 +100,8 @@ namespace Strings
         uint32_t a = 0;
         uint32_t n = 0;
         uint32_t len = str.length();
-        while(n != len) {
+        while(n != len) 
+        {
             if (str[n] == symbol[0]) a++;
             n++;
         }
@@ -105,17 +116,22 @@ namespace Strings
         uint32_t len = wcslen(str)-1;
         uint32_t lenw = wcslen(word)-1;
         uint32_t bufl = 0;
-        while(n != len) {
-            if (str[n] == word[bufl]) {
-                if (bufl == lenw) {
+        while(n != len) 
+        {
+            if (str[n] == word[bufl]) 
+            {
+                if (bufl == lenw) 
+                {
                     bufl = 0;
                     a++;
                 }
-                else {
+                else 
+                {
                     bufl++;
                 }
             }
-            else {
+            else 
+            {
                 bufl = 0;
             }
             n++;
@@ -131,16 +147,20 @@ namespace Strings
         uint32_t lenw = word.length()-1;
         uint32_t bufl = 0;
         while(n != len) {
-            if (str[n] == word[bufl]) {
-                if (bufl == lenw) {
+            if (str[n] == word[bufl]) 
+            {
+                if (bufl == lenw) 
+                {
                     bufl = 0;
                     a++;
                 }
-                else {
+                else 
+                {
                     bufl++;
                 }
             }
-            else {
+            else 
+            {
                 bufl = 0;
             }
             n++;
@@ -156,13 +176,17 @@ namespace Strings
         uint32_t len = wcslen(str)-1;
         uint32_t lenw = wcslen(word)-1;
         uint32_t bufl = 0;
-        while(n != len) {
-            if (str[n] == word[bufl]) {
-                if (bufl == lenw) {
+        while(n != len) 
+        {
+            if (str[n] == word[bufl]) 
+            {
+                if (bufl == lenw) 
+                {
                     bufl = 0;
                     return n;
                 }
-                else {
+                else 
+                {
                     bufl++;
                 }
             }
@@ -179,7 +203,8 @@ namespace Strings
     {
         uint32_t n = 0;
         uint32_t len = wcslen(str)-1;
-        while(n != len) {
+        while(n != len) 
+        {
             if (str[n] == symbol[0]) return n;
             n++;
         }
@@ -189,7 +214,8 @@ namespace Strings
     {
         uint32_t n = 0;
         uint32_t len = str.length()-1;
-        while(n != len) {
+        while(n != len) 
+        {
             if (str[n] == symbol[0]) return n;
             n++;
         }
@@ -218,10 +244,12 @@ namespace Strings
         uint32_t s = 0;
 
         uint32_t f = 0;
-        while(n != len){
+        while(n != len)
+        {
             
             //Checking for between separators
-            if(par_string[n]==sep[0]){
+            if(par_string[n]==sep[0])
+            {
                 f++;
                 if(f == par_num) return SubString(par_string,s,n);
                 s=n;
@@ -246,7 +274,8 @@ namespace Strings
         uint32_t s = 0;
 
         uint32_t f = 0;
-        while(n != len){
+        while(n != len)
+        {
             
             //Checking for between separators
             if(par_string[n]==sep[0])
@@ -280,21 +309,26 @@ namespace Strings
         uint32_t s = 0;
 
         uint32_t f = 0;
-        while(n != len){
+        while(n != len)
+        {
             //Checking for between separators
-            if (par_string[n] == sep[l]) {
-                if (l == lens) {
+            if (par_string[n] == sep[l]) 
+            {
+                if (l == lens) 
+                {
                     //Separator finded
                     l = 0;
                     f++;
                     if(f == par_num) return SubString(par_string,s,n);
                     s=n;
                 }
-                else {
+                else 
+                {
                     l++;
                 }
             }
-            else {
+            else 
+            {
                 l = 0;
             }
             n++;
@@ -318,21 +352,26 @@ namespace Strings
         uint32_t s = 0;
 
         uint32_t f = 0;
-        while(n != len){
+        while(n != len)
+        {
             //Checking for between separators
-            if (par_string[n] == sep[l]) {
-                if (l == lens) {
+            if (par_string[n] == sep[l]) 
+            {
+                if (l == lens) 
+                {
                     //Separator finded
                     l = 0;
                     f++;
                     if(f == par_num) return par_string.substr(s,n);
                     s=n;
                 }
-                else {
+                else 
+                {
                     l++;
                 }
             }
-            else {
+            else 
+            {
                 l = 0;
             }
             n++;
@@ -356,10 +395,11 @@ namespace Strings
         uint32_t s = 0;
 
         uint32_t f = 0;
-        while(n != len){
-            
+        while(n != len)
+        {
             //Checking for between separators
-            if(par_string[n]==sep[0]) {
+            if(par_string[n]==sep[0]) 
+            {
                 f++;
                 if(f == par_num) par_string = SubString(par_string,0,s)+*newstrpar+*SubString(par_string,n,len);break;
                 s=n;
@@ -370,6 +410,7 @@ namespace Strings
             
         }
     }
+    
     void SetParSepSymbol(
         wstring* par_string,
         wstring sep,
@@ -384,13 +425,15 @@ namespace Strings
 
         uint32_t f = 0;
         wstring temp = *par_string;
-        while(n != len){
-            
+        while(n != len)
+        {
             //Checking for between separators
-            if(temp[n]==sep[0]) {
+            if(temp[n]==sep[0]) 
+            {
                 f++;
                 
-                if(f == par_num) {
+                if(f == par_num) 
+                {
                     temp = SubString(*par_string,0,s)+newstrpar+SubString(*par_string,n,len); 
                     free(par_string);
                     par_string = &temp;
@@ -400,7 +443,8 @@ namespace Strings
             }
             n++;
             //Checks if the line has ended and if a separator has been found
-            if(len==n && f == par_num-1) {
+            if(len==n && f == par_num-1) 
+            {
                 temp = SubString(*par_string,0,s)+newstrpar+SubString(*par_string,n,len); 
                 free(par_string);
                 par_string = &temp;
@@ -425,26 +469,31 @@ namespace Strings
         uint32_t s = 0;
        
         uint32_t f = 0;
-        while(n != len){
+        while(n != len)
+        {
             //Search between separators
-            if (par_string[n] == sep[l]) {
-                if (l == lens) {
+            if (par_string[n] == sep[l]) 
+            {
+                if (l == lens) 
+                {
                     //Separator finded
                     l = 0;
                     f++;
                     if(f == par_num) par_string = SubString(par_string,0,s) + *newstrpar + *SubString(par_string,n,len); break;
                     s=n;
                 }
-                else {
+                else 
+                {
                     l++;
                 }
             }
-            else {
+            else 
+            {
                 l = 0;
             }
             n++;
             //Checks if the line has ended and if a separator has been found
-            if(len==n && f == par_num-1) par_string = SubString(par_string,0,s)+*newstrpar+*SubString(par_string,n,len);break;
+            if(len==n && f == par_num-1) par_string = SubString(par_string,0,s)+*newstrpar+*SubString(par_string,n,len); break;
         }
     }
 
@@ -464,14 +513,18 @@ namespace Strings
         
         uint32_t f = 0;
         wstring temp = *par_string;
-        while(n != len){
+        while(n != len)
+        {
             //Search between separators
-            if (temp[n] == sep[l]) {
-                if (l == lens) {
+            if (temp[n] == sep[l]) 
+            {
+                if (l == lens) 
+                {
                     //Separator finded
                     l = 0;
                     f++;
-                    if(f == par_num) {
+                    if(f == par_num) 
+                    {
                         temp = SubString(temp,0,s)+newstrpar+SubString(temp,n,len); 
                         free(par_string);
                         par_string = &temp;
@@ -479,16 +532,19 @@ namespace Strings
                     }
                     s=n;
                 }
-                else {
+                else 
+                {
                     l++;
                 }
             }
-            else {
+            else 
+            {
                 l = 0;
             }
             n++;
             //Checks if the line has ended and if a separator has been found
-            if(len==n && f == par_num-1) {
+            if(len==n && f == par_num-1) 
+            {
                 temp = SubString(temp,0,s)+newstrpar+SubString(temp,n,len); 
                 free(par_string);
                 par_string = &temp;
