@@ -50,10 +50,3 @@ Change **VCPKG_ROOT** to your vcpkg directory
 ``````bash
 cmake --build ./build --config Release
 ``````
-
-## Sponsoring 💎
-
-1. **MasterCard** 5363 5420 9532 9984
-2. **Bitcoin** BC1QEZRL6WYY7T3M6AM4KTEF63H7KQ9HMG0MAH28H5
-3. **Monero** 46Vvmi4pnRggWJjFo3Do4jGAB8eSYvYQvGkEF2xtAqBE9n13GEEPiHn7rU2eSxuTA3HKKwoxhTT2QgGxEwwLhTL99pSbZ4B
-4. **TRON** TB4iWbLynygTpCALUTHSk3bbPvjCymAwBh
